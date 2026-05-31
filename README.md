@@ -56,6 +56,17 @@ Each skill is plain Markdown. You can use it directly:
 3. Add the source material.
 4. Ask for the output format named in the skill.
 
+## Choose by Role
+
+| Role | Start here | What it solves |
+| --- | --- | --- |
+| Developer or coding agent | `repo-to-agent-context` | Quick onboarding for an unfamiliar codebase |
+| Meeting operator | `meeting-to-action-brief` | Convert notes into decisions, owners, deadlines |
+| Product QA and ops | `eval-case-miner` | Build reusable eval cases from incidents and complaints |
+| Prompt/policy owner | `prompt-drift-review`, `agent-skill-lint-review` | Detect instruction drift and publish-readiness risks |
+| Cost and latency manager | `llm-cost-risk-review` | Find expensive context and propose control points |
+| Internal tool builder | `devtool-launch-pack` | Prepare launch-ready project material |
+
 ## Quickstart
 
 Validate the collection:
@@ -136,6 +147,8 @@ The fastest way to understand the collection is to compare a messy input with th
 | `deck-to-agent-kb` | [Deck notes to agent knowledge base](examples/deck-to-agent-kb-before-after.md) |
 | `prompt-drift-review` | [Prompt diff to drift review](examples/prompt-drift-review-before-after.md) |
 | `agent-trace-debugger` | [Trace log to failure timeline](examples/agent-trace-debugger-before-after.md) |
+| `repo-to-agent-context` | [Repo snapshot to agent context](examples/repo-to-agent-context-before-after.md) |
+| `llm-cost-risk-review` | [Context bundle to cost-risk review](examples/llm-cost-risk-review-before-after.md) |
 
 Short deck example:
 
