@@ -129,7 +129,15 @@ Expected shape:
 
 ## Examples
 
-Before:
+The fastest way to understand the collection is to compare a messy input with the output a skill asks an agent to produce.
+
+| Skill | Example |
+| --- | --- |
+| `deck-to-agent-kb` | [Deck notes to agent knowledge base](examples/deck-to-agent-kb-before-after.md) |
+| `prompt-drift-review` | [Prompt diff to drift review](examples/prompt-drift-review-before-after.md) |
+| `agent-trace-debugger` | [Trace log to failure timeline](examples/agent-trace-debugger-before-after.md) |
+
+Short deck example:
 
 ```text
 Slide 7: UAT screenshots. Some failures around permission prompts.
@@ -153,8 +161,6 @@ After using `deck-to-agent-kb`:
 - The agent may summarize observed slide evidence.
 - The agent must not claim production readiness without UAT sign-off.
 ```
-
-More examples live in `examples/`.
 
 ## API
 
