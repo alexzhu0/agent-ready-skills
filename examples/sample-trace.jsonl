@@ -1,0 +1,6 @@
+{"ts":"2026-05-31T10:00:00Z","type":"user","message":"Summarize this deck into a knowledge base."}
+{"ts":"2026-05-31T10:00:04Z","type":"tool_call","tool":"extract_text","input":"deck.pptx"}
+{"ts":"2026-05-31T10:00:08Z","type":"tool_result","tool":"extract_text","status":"ok","message":"Text extracted from 5 slides."}
+{"ts":"2026-05-31T10:00:12Z","type":"tool_call","tool":"inspect_images","input":"slide screenshots"}
+{"ts":"2026-05-31T10:00:15Z","type":"tool_result","tool":"inspect_images","status":"error","message":"Missing screenshot directory."}
+{"ts":"2026-05-31T10:00:18Z","type":"agent","message":"Continuing with text only."}

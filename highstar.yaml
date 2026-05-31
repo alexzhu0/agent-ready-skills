@@ -1,0 +1,27 @@
+name: agent-ready-skills
+one_liner: Ten practical AI-agent skills for turning messy work into clear context, evals, reviews, and launch-ready artifacts.
+target_user: Developers, PMs, and AI-agent operators who need reusable agent workflows.
+pain_point: Agent builders repeatedly rewrite the same context, review, evaluation, debugging, and launch workflows instead of reusing clear skill instructions.
+demo_command: python3 scripts/validate_skills.py .
+topics:
+  - ai-agents
+  - skills
+  - codex
+  - claude-skills
+  - prompt-engineering
+  - llmops
+  - developer-tools
+release_channel:
+  - github
+  - public
+launch_copy:
+  - Ten practical AI-agent skills for context, evals, prompt review, trace debugging, and launch prep.
+  - Copy one folder, read one SKILL.md, and adapt it to your agent workflow.
+quality_gate:
+  commands:
+    - python3 scripts/validate_skills.py .
+metrics_goal:
+  first_week:
+    - GitHub views
+    - Stars from relevant agent builders
+    - Issues with concrete workflow examples

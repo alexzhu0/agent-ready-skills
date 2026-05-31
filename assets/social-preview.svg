@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#101418"/>
+  <rect x="72" y="72" width="1056" height="486" rx="24" fill="#f7f3ea"/>
+  <text x="120" y="180" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#101418">Agent Ready Skills</text>
+  <text x="120" y="255" font-family="Arial, sans-serif" font-size="34" fill="#2d3748">10 practical skills for agent builders</text>
+  <text x="120" y="350" font-family="Arial, sans-serif" font-size="28" fill="#101418">Context - evals - reviews - traces - launches</text>
+  <rect x="120" y="420" width="330" height="64" rx="12" fill="#0f766e"/>
+  <text x="150" y="462" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#ffffff">Copy one SKILL.md</text>
+</svg>
