@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import re
 import sys
 from pathlib import Path
@@ -10,6 +11,7 @@ from pathlib import Path
 
 REQUIRED_SECTIONS = ["Purpose", "Inputs", "Workflow", "Output", "Validation"]
 NAME_RE = re.compile(r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
+TRIGGER_TERMS = ("use when", "when", "converting", "reviewing", "turning", "summarizing")
 
 
 def fail(message: str) -> None:
@@ -58,8 +60,65 @@ def validate_skill(skill_dir: Path) -> list[str]:
     return issues
 
 
+def score_skill(skill_dir: Path) -> tuple[int, list[str]]:
+    skill_file = skill_dir / "SKILL.md"
+    text = skill_file.read_text(encoding="utf-8") if skill_file.exists() else ""
+    frontmatter = parse_frontmatter(text, skill_file) if text else {}
+    description = frontmatter.get("description", "")
+    lower_description = description.lower()
+    lower_text = text.lower()
+
+    score = 0
+    notes: list[str] = []
+
+    if len(description) >= 100 and any(term in lower_description for term in TRIGGER_TERMS):
+        score += 25
+        notes.append("trigger clarity: 25/25")
+    elif len(description) >= 60:
+        score += 15
+        notes.append("trigger clarity: 15/25")
+    else:
+        notes.append("trigger clarity: 0/25")
+
+    section_points = 0
+    for section in REQUIRED_SECTIONS:
+        if f"## {section}" in text:
+            section_points += 8
+    score += section_points
+    notes.append(f"required sections: {section_points}/40")
+
+    validation_section = lower_text.split("## validation", 1)[1] if "## validation" in lower_text else ""
+    if len(validation_section.strip()) >= 200:
+        score += 20
+        notes.append("validation guidance: 20/20")
+    elif validation_section.strip():
+        score += 10
+        notes.append("validation guidance: 10/20")
+    else:
+        notes.append("validation guidance: 0/20")
+
+    if 80 <= len(description) <= 240:
+        score += 15
+        notes.append("description length: 15/15")
+    elif len(description) >= 60:
+        score += 8
+        notes.append("description length: 8/15")
+    else:
+        notes.append("description length: 0/15")
+
+    return score, notes
+
+
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="Validate agent-ready-skills.")
+    parser.add_argument("root", nargs="?", default=".", help="Repository root to validate")
+    parser.add_argument("--score", action="store_true", help="Print a simple quality score for each skill")
+    return parser.parse_args(argv[1:])
+
+
 def main(argv: list[str]) -> int:
-    root = Path(argv[1]).resolve() if len(argv) > 1 else Path.cwd().resolve()
+    args = parse_args(argv)
+    root = Path(args.root).resolve()
     skills_dir = root / "skills"
     if not skills_dir.exists():
         fail(f"{skills_dir} does not exist")
@@ -76,6 +135,11 @@ def main(argv: list[str]) -> int:
         for issue in issues:
             print(f"ERROR: {issue}")
         return 1
+
+    if args.score:
+        for skill_dir in skill_dirs:
+            score, notes = score_skill(skill_dir)
+            print(f"SCORE {score:03d}/100 {skill_dir.name} - {'; '.join(notes)}")
 
     print(f"OK: validated {len(skill_dirs)} skills in {skills_dir}")
     return 0

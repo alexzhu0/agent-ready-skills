@@ -172,6 +172,14 @@ python3 scripts/validate_skills.py .
 
 The validator checks frontmatter, section coverage, naming, and minimum skill count.
 
+To print a simple quality score for each skill:
+
+```bash
+python3 scripts/validate_skills.py . --score
+```
+
+The score looks at trigger clarity, required sections, validation guidance, and description length. The default validator output is unchanged when `--score` is not used.
+
 ## FAQ
 
 **Does this call external AI APIs?**
