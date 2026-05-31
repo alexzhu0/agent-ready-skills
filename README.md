@@ -22,6 +22,40 @@ python3 scripts/validate_skills.py .
 
 To use a skill, copy a folder from `skills/` into your local skill directory, or paste the relevant `SKILL.md` into your agent instructions.
 
+### Use With Codex
+
+If your Codex setup loads user skills from `~/.codex/skills`, copy one folder:
+
+```bash
+mkdir -p ~/.codex/skills
+cp -R skills/deck-to-agent-kb ~/.codex/skills/
+```
+
+Then start a new Codex task and ask:
+
+```text
+Use the deck-to-agent-kb skill on my slide notes and produce an agent knowledge base.
+```
+
+### Use With Claude-Style Skill Runtimes
+
+If your runtime supports folder-based skills with a `SKILL.md`, copy the folder into that runtime's skills directory:
+
+```bash
+cp -R skills/prompt-drift-review /path/to/your/skills/
+```
+
+If your runtime does not support skill folders, paste the selected `SKILL.md` into the agent's project instructions and attach the source material.
+
+### Use With Any Agent
+
+Each skill is plain Markdown. You can use it directly:
+
+1. Pick the skill that matches the job.
+2. Paste the `SKILL.md` into your agent.
+3. Add the source material.
+4. Ask for the output format named in the skill.
+
 ## Quickstart
 
 Validate the collection:
@@ -40,6 +74,42 @@ Then ask your agent:
 
 ```text
 Use the deck-to-agent-kb skill on examples/sample-deck-notes.md and produce an agent knowledge base.
+```
+
+## 30-Second Trial
+
+Paste this into your agent with `skills/deck-to-agent-kb/SKILL.md`:
+
+```text
+Use the deck-to-agent-kb skill.
+
+Source notes:
+- Slide 1 says the project turns internal demo material into an agent-ready knowledge base.
+- Slide 3 says UAT found permission prompts blocking automation.
+- Slide 4 says the larger model gave better summaries but increased latency and cost.
+
+Return only:
+1. Key facts
+2. Risk and action index
+3. Recommended answer boundaries
+```
+
+Expected shape:
+
+```markdown
+## Key Facts
+- The project goal is an agent-ready knowledge base.
+- UAT found permission prompts blocking automation.
+- The larger model improved summary quality but increased latency and cost.
+
+## Risk And Action Index
+| Risk | Evidence | Action |
+| --- | --- | --- |
+| Permission prompts block automation | Slide 3 | Define approval boundary and fallback path |
+
+## Recommended Answer Boundaries
+- The agent may summarize observed slide evidence.
+- The agent must not claim production readiness without UAT sign-off.
 ```
 
 ## Skill Index
