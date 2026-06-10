@@ -9,6 +9,11 @@ description: Use when converting prompts, system instructions, assistant behavio
 
 Turn desired model behavior into a reusable evaluation rubric.
 
+## Fit
+
+- Use when prompt behavior must be evaluated repeatedly or compared across model/prompt versions.
+- Do not use when the task is only rewriting the prompt and no evaluation criteria are needed.
+
 ## Inputs
 
 - Prompt, system instruction, policy, desired behavior, or bad output.
@@ -19,9 +24,10 @@ Turn desired model behavior into a reusable evaluation rubric.
 
 1. Extract expected behaviors and forbidden behaviors.
 2. Convert each behavior into a measurable criterion.
-3. Add representative test cases, including edge cases.
-4. Define pass/fail assertions and scoring guidance.
-5. Preserve uncertainty where behavior is underspecified.
+3. Tie each criterion to prompt evidence, policy evidence, or a clearly labeled assumption.
+4. Add representative test cases, including edge cases.
+5. Define pass/fail assertions and scoring guidance.
+6. Preserve uncertainty where behavior is underspecified.
 
 ## Output
 

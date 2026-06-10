@@ -9,6 +9,11 @@ description: Use when reviewing changelogs, release notes, migration guides, or 
 
 Convert release notes into an actionable upgrade plan without losing breaking changes or operational risk.
 
+## Fit
+
+- Use when release notes or migration docs need to become owner-ready upgrade work.
+- Do not use when the change is a direct version bump with no changelog, impact surface, or rollout concern.
+
 ## Inputs
 
 - Changelog, migration guide, release announcement, or dependency diff.

@@ -9,6 +9,11 @@ description: Use when reviewing schema migrations, SQL changes, data backfills, 
 
 Find practical risks in database migrations before they reach production.
 
+## Fit
+
+- Use when schema, data, index, or backfill changes need production-safety review.
+- Do not use when the task is general database modeling with no migration or rollout action.
+
 ## Inputs
 
 - Migration files, SQL snippets, schema diff, backfill plan, or rollout notes.

@@ -9,6 +9,11 @@ description: Use when reviewing feature specs, tool integrations, agent workflow
 
 Create a pragmatic security review checklist for a feature or workflow.
 
+## Fit
+
+- Use when a feature, tool, integration, or agent workflow can affect data, auth, secrets, or external actions.
+- Do not use when the change is purely cosmetic and has no trust boundary or data-flow impact.
+
 ## Inputs
 
 - Feature spec, tool list, API change, workflow description, or launch plan.

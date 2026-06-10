@@ -9,9 +9,24 @@ import sys
 from pathlib import Path
 
 
-REQUIRED_SECTIONS = ["Purpose", "Inputs", "Workflow", "Output", "Validation"]
+REQUIRED_SECTIONS = ["Purpose", "Fit", "Inputs", "Workflow", "Output", "Validation"]
 NAME_RE = re.compile(r"^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$")
 TRIGGER_TERMS = ("use when", "when", "converting", "reviewing", "turning", "summarizing")
+SAFETY_EVIDENCE_TERMS = (
+    "approval",
+    "assumption",
+    "auth",
+    "evidence",
+    "not fabricated",
+    "not invented",
+    "private",
+    "privacy",
+    "rollback",
+    "secret",
+    "security",
+    "sensitive",
+    "unknown",
+)
 
 
 def fail(message: str) -> None:
@@ -72,20 +87,20 @@ def score_skill(skill_dir: Path) -> tuple[int, list[str]]:
     notes: list[str] = []
 
     if len(description) >= 100 and any(term in lower_description for term in TRIGGER_TERMS):
-        score += 25
-        notes.append("trigger clarity: 25/25")
+        score += 20
+        notes.append("trigger clarity: 20/20")
     elif len(description) >= 60:
-        score += 15
-        notes.append("trigger clarity: 15/25")
+        score += 12
+        notes.append("trigger clarity: 12/20")
     else:
-        notes.append("trigger clarity: 0/25")
+        notes.append("trigger clarity: 0/20")
 
     section_points = 0
     for section in REQUIRED_SECTIONS:
         if f"## {section}" in text:
-            section_points += 8
+            section_points += 5
     score += section_points
-    notes.append(f"required sections: {section_points}/40")
+    notes.append(f"required sections: {section_points}/30")
 
     validation_section = lower_text.split("## validation", 1)[1] if "## validation" in lower_text else ""
     if len(validation_section.strip()) >= 200:
@@ -97,14 +112,31 @@ def score_skill(skill_dir: Path) -> tuple[int, list[str]]:
     else:
         notes.append("validation guidance: 0/20")
 
-    if 80 <= len(description) <= 240:
+    fit_section = lower_text.split("## fit", 1)[1].split("## inputs", 1)[0] if "## fit" in lower_text else ""
+    if "use when" in fit_section and "do not use when" in fit_section:
         score += 15
-        notes.append("description length: 15/15")
-    elif len(description) >= 60:
+        notes.append("fit boundary: 15/15")
+    elif fit_section.strip():
         score += 8
-        notes.append("description length: 8/15")
+        notes.append("fit boundary: 8/15")
     else:
-        notes.append("description length: 0/15")
+        notes.append("fit boundary: 0/15")
+
+    output_section = lower_text.split("## output", 1)[1].split("## validation", 1)[0] if "## output" in lower_text else ""
+    if output_section.count("\n- ") >= 5:
+        score += 10
+        notes.append("actionable output: 10/10")
+    elif output_section.strip():
+        score += 5
+        notes.append("actionable output: 5/10")
+    else:
+        notes.append("actionable output: 0/10")
+
+    if any(term in lower_text for term in SAFETY_EVIDENCE_TERMS):
+        score += 5
+        notes.append("evidence/safety marker: 5/5")
+    else:
+        notes.append("evidence/safety marker: 0/5")
 
     return score, notes
 

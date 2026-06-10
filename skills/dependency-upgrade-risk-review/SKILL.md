@@ -9,6 +9,11 @@ description: Use when reviewing dependency upgrades, package-lock diffs, SDK ver
 
 Assess whether a dependency upgrade is safe, risky, or needs a staged rollout.
 
+## Fit
+
+- Use when a dependency version change needs impact, test, and rollout review.
+- Do not use when choosing between unrelated packages; use a dependency-selection workflow instead.
+
 ## Inputs
 
 - Current and target versions.

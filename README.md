@@ -10,6 +10,27 @@ Agent builders repeatedly need the same workflows: turning docs into tool specs,
 
 These skills make those workflows explicit, readable, and easy to adapt.
 
+## Why These 20
+
+The set focuses on workflows that appear repeatedly in public agent-skill ecosystems and real agent operations:
+
+- Product and planning work: PRDs, roadmaps, competitive briefs, telemetry insights.
+- Quality and eval work: support-ticket evals, prompt rubrics, bug repros, incident postmortems.
+- Engineering risk work: RFCs, dependency upgrades, database migrations, security and privacy reviews.
+- Agent operations: handoffs, tool permissions, automation scouting, launch readiness.
+
+The common pattern is not "make the agent smarter." It is "make repeated expert work reusable, inspectable, and safer."
+
+## Quality Bar
+
+Each skill is expected to:
+
+- Trigger from a specific messy input, not a vague topic.
+- State when to use it and when not to use it.
+- Produce an artifact someone can paste into an issue, PRD, review, launch note, or eval suite.
+- Preserve evidence, assumptions, and unknowns.
+- Avoid unsafe external actions, credential exposure, and irreversible operations.
+
 ## Install
 
 ```bash

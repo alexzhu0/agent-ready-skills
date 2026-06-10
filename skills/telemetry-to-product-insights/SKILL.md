@@ -9,6 +9,11 @@ description: Use when reviewing product telemetry, funnel notes, event exports, 
 
 Convert product metrics into usable product insight without pretending the data proves more than it does.
 
+## Fit
+
+- Use when telemetry needs to inform a product decision, experiment, or follow-up analysis.
+- Do not use when metrics definitions, time window, and source are completely unknown.
+
 ## Inputs
 
 - Event exports, dashboard screenshots, funnel notes, or metric summaries.

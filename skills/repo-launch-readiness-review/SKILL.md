@@ -9,6 +9,11 @@ description: Use when reviewing a small repository before public launch for READ
 
 Check whether a small repository is understandable, usable, and safe to publish.
 
+## Fit
+
+- Use when a repo is close to public release and needs a final trust/readiness review.
+- Do not use when the repo still lacks a working artifact or the task is deep implementation.
+
 ## Inputs
 
 - Repository README, file tree, metadata, examples, license, and release notes.

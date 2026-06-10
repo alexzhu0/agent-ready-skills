@@ -9,6 +9,11 @@ description: Use when converting roadmap notes, feature lists, planning docs, or
 
 Turn broad roadmap material into a release plan that teams can execute and inspect.
 
+## Fit
+
+- Use when roadmap intent needs to become milestones, scope, dependencies, and release gates.
+- Do not use when the task is long-term vision strategy with no near-term release decision.
+
 ## Inputs
 
 - Roadmap notes, backlog themes, feature lists, or planning docs.

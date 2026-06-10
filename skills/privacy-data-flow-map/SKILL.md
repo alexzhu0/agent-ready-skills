@@ -9,6 +9,11 @@ description: Use when mapping product flows, event tracking, forms, integrations
 
 Map what data a workflow collects, where it goes, and which privacy questions need review.
 
+## Fit
+
+- Use when a product or agent workflow handles user, customer, employee, or sensitive operational data.
+- Do not use when no data collection, storage, sharing, or retention decision is involved.
+
 ## Inputs
 
 - Product flow, form fields, event names, integration docs, or agent workflow.

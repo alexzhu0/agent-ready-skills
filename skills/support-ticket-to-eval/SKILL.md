@@ -9,6 +9,11 @@ description: Use when turning support tickets, user complaints, helpdesk transcr
 
 Turn real support pain into repeatable eval cases for product, support, or agent behavior.
 
+## Fit
+
+- Use when support evidence should become a reusable regression or model-behavior eval.
+- Do not use when the ticket only needs a one-off human reply and no future check is useful.
+
 ## Inputs
 
 - Support ticket, complaint, chat transcript, or failed assistant output.

@@ -9,6 +9,11 @@ description: Use when auditing AI-agent tool permissions, command policies, conn
 
 Review an agent's tools and permission policy for unsafe access, unclear gates, and least-privilege gaps.
 
+## Fit
+
+- Use when an agent can read/write files, call connectors, run commands, publish, or touch credentials.
+- Do not use when the agent has no tool access and only produces plain text.
+
 ## Inputs
 
 - Tool list, command allowlist, connector scopes, system instructions, or policy text.

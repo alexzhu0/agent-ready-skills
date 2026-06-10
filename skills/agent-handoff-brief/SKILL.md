@@ -9,6 +9,11 @@ description: Use when handing work from one AI agent, developer, or session to a
 
 Create a compact handoff that lets another agent resume without redoing discovery.
 
+## Fit
+
+- Use when work needs to continue across agents, sessions, context compaction, or developer handoff.
+- Do not use when the task is already complete and no next actor needs evidence, files, or blockers.
+
 ## Inputs
 
 - Current task, conversation notes, file changes, commands run, or partial results.

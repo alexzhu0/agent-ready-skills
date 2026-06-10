@@ -9,6 +9,11 @@ description: Use when reviewing architecture RFCs, system design docs, diagrams,
 
 Review architecture proposals for clarity, risk, tradeoffs, and readiness to decide.
 
+## Fit
+
+- Use when a technical proposal needs a decision-quality review before implementation.
+- Do not use when the task is only code style cleanup or a small isolated bug fix.
+
 ## Inputs
 
 - RFC, design doc, diagram, ADR, or proposal.

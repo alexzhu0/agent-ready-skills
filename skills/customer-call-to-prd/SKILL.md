@@ -9,6 +9,11 @@ description: Use when converting customer call notes, interview transcripts, sal
 
 Transform customer conversation material into a product requirement draft that preserves evidence and uncertainty.
 
+## Fit
+
+- Use when customer research needs to become requirements without losing the original evidence.
+- Do not use when the user already has a finalized PRD and only needs copyediting.
+
 ## Inputs
 
 - Call notes, transcript snippets, interview notes, or sales discovery notes.

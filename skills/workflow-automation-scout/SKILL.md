@@ -9,6 +9,11 @@ description: Use when reviewing repeated manual processes, team workflows, opera
 
 Find useful automation opportunities without automating unclear or risky judgment.
 
+## Fit
+
+- Use when repeated manual work may be automated with clear inputs, outputs, safeguards, and review gates.
+- Do not use when the process is mostly one-off strategy, negotiation, or human judgment.
+
 ## Inputs
 
 - Process notes, SOPs, task logs, checklists, or repeated manual work descriptions.

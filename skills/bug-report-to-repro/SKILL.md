@@ -9,6 +9,11 @@ description: Use when converting bug reports, user complaints, screenshots, logs
 
 Turn vague bug reports into a clear reproduction brief that engineering or QA can use.
 
+## Fit
+
+- Use when a bug report has enough symptom evidence to form a reproducible test path or triage brief.
+- Do not use when the request is root-cause debugging without a concrete observed failure.
+
 ## Inputs
 
 - Bug text, screenshot notes, logs, environment details, or user complaint.

@@ -9,6 +9,11 @@ description: Use when summarizing competitor research, product pages, feature co
 
 Turn scattered competitor notes into a grounded research brief for product, sales, or strategy.
 
+## Fit
+
+- Use when competitor material needs to become evidence-backed positioning or roadmap input.
+- Do not use when the task requires live market claims that have not been sourced or dated.
+
 ## Inputs
 
 - Competitor notes, pages, screenshots, feature lists, pricing notes, or sales feedback.

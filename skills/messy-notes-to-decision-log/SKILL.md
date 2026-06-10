@@ -9,6 +9,11 @@ description: Use when turning rough notes, chat dumps, meeting fragments, scratc
 
 Extract durable decisions and unresolved questions from rough material.
 
+## Fit
+
+- Use when rough notes contain mixed decisions, proposals, actions, and questions.
+- Do not use when the material is a clean task list that only needs formatting.
+
 ## Inputs
 
 - Notes, chat excerpts, meeting fragments, or planning scratchpads.

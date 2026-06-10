@@ -9,6 +9,11 @@ description: Use when converting API documentation, endpoint notes, OpenAPI snip
 
 Turn API documentation into a compact tool specification an agent can safely use or hand to an implementer.
 
+## Fit
+
+- Use when source docs describe API behavior but an agent needs a safer tool contract before implementation or automation.
+- Do not use when the source is only product intent with no endpoint, auth, or data-shape evidence.
+
 ## Inputs
 
 - Endpoint docs, OpenAPI snippets, SDK examples, or integration notes.

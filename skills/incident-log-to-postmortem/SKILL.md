@@ -9,6 +9,11 @@ description: Use when summarizing incident logs, outage timelines, status update
 
 Turn scattered incident material into a readable postmortem draft without overstating the root cause.
 
+## Fit
+
+- Use when incident evidence needs to become a postmortem draft or follow-up action list.
+- Do not use when the incident is still active and the priority is live mitigation.
+
 ## Inputs
 
 - Incident timeline, alerts, logs, status updates, or chat notes.
