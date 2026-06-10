@@ -1,18 +1,16 @@
 # Agent Ready Skills
 
-Ten practical AI-agent skills for turning messy work into clear context, evals, reviews, and launch-ready artifacts.
+Twenty practical AI-agent skills for turning messy work into clear specs, evals, reviews, briefs, and launch-ready artifacts.
 
-This repository is intentionally simple: copy one skill folder, read one `SKILL.md`, and use it with any agent workflow that supports skill-like instructions.
+This repository is intentionally simple: each skill is one folder with one `SKILL.md`. Copy a folder into a compatible skills directory, or paste the selected `SKILL.md` into your agent instructions.
 
 ## Why
 
-Agent builders repeatedly solve the same problems: compressing context, reviewing prompt drift, debugging traces, turning failures into evals, and preparing small tools for public launch.
+Agent builders repeatedly need the same workflows: turning docs into tool specs, turning incidents into evals, reviewing risk, compressing handoffs, and preparing small repositories for release.
 
-These skills make those workflows explicit, inspectable, and easy to adapt.
+These skills make those workflows explicit, readable, and easy to adapt.
 
 ## Install
-
-Clone the repository and run the validator:
 
 ```bash
 git clone https://github.com/alexzhu0/agent-ready-skills.git
@@ -20,202 +18,114 @@ cd agent-ready-skills
 python3 scripts/validate_skills.py .
 ```
 
-To use a skill, copy a folder from `skills/` into your local skill directory, or paste the relevant `SKILL.md` into your agent instructions.
-
-### Use With Codex
-
-If your Codex setup loads user skills from `~/.codex/skills`, copy one folder:
+Use one skill:
 
 ```bash
 mkdir -p ~/.codex/skills
-cp -R skills/deck-to-agent-kb ~/.codex/skills/
+cp -R skills/bug-report-to-repro ~/.codex/skills/
 ```
 
-Then start a new Codex task and ask:
-
-```text
-Use the deck-to-agent-kb skill on my slide notes and produce an agent knowledge base.
-```
-
-### Use With Claude-Style Skill Runtimes
-
-If your runtime supports folder-based skills with a `SKILL.md`, copy the folder into that runtime's skills directory:
-
-```bash
-cp -R skills/prompt-drift-review /path/to/your/skills/
-```
-
-If your runtime does not support skill folders, paste the selected `SKILL.md` into the agent's project instructions and attach the source material.
-
-### Use With Any Agent
-
-Each skill is plain Markdown. You can use it directly:
-
-1. Pick the skill that matches the job.
-2. Paste the `SKILL.md` into your agent.
-3. Add the source material.
-4. Ask for the output format named in the skill.
-
-## Choose by Role
-
-| Role | Start here | What it solves |
-| --- | --- | --- |
-| Developer or coding agent | `repo-to-agent-context` | Quick onboarding for an unfamiliar codebase |
-| Meeting operator | `meeting-to-action-brief` | Convert notes into decisions, owners, deadlines |
-| Product QA and ops | `eval-case-miner` | Build reusable eval cases from incidents and complaints |
-| Prompt/policy owner | `prompt-drift-review`, `agent-skill-lint-review` | Detect instruction drift and publish-readiness risks |
-| Cost and latency manager | `llm-cost-risk-review` | Find expensive context and propose control points |
-| Internal tool builder | `devtool-launch-pack` | Prepare launch-ready project material |
+Or paste the selected `SKILL.md` into any agent that supports project instructions.
 
 ## Quickstart
 
-Validate the collection:
+1. Pick a skill from the index.
+2. Read its `SKILL.md`.
+3. Attach the messy source material.
+4. Ask the agent to produce the output sections named by the skill.
 
-```bash
-python3 scripts/validate_skills.py .
-```
-
-Use one skill directly:
-
-```bash
-sed -n '1,180p' skills/deck-to-agent-kb/SKILL.md
-```
-
-Then ask your agent:
+Example:
 
 ```text
-Use the deck-to-agent-kb skill on examples/sample-deck-notes.md and produce an agent knowledge base.
+Use the bug-report-to-repro skill on this support complaint and produce a reproduction brief.
 ```
 
 ## 30-Second Trial
 
-Paste this into your agent with `skills/deck-to-agent-kb/SKILL.md`:
+Paste `skills/bug-report-to-repro/SKILL.md` into your agent with this input:
 
 ```text
-Use the deck-to-agent-kb skill.
-
-Source notes:
-- Slide 1 says the project turns internal demo material into an agent-ready knowledge base.
-- Slide 3 says UAT found permission prompts blocking automation.
-- Slide 4 says the larger model gave better summaries but increased latency and cost.
-
-Return only:
-1. Key facts
-2. Risk and action index
-3. Recommended answer boundaries
+The import button fails for CSV files over 20MB. User sees "Upload complete" but the file never appears. Browser: Chrome. Account: admin test tenant. It worked last week.
 ```
 
-Expected shape:
+Expected output shape:
 
 ```markdown
-## Key Facts
-- The project goal is an agent-ready knowledge base.
-- UAT found permission prompts blocking automation.
-- The larger model improved summary quality but increased latency and cost.
+## Reproduction Brief
+- Symptom: CSV import appears complete but file does not appear.
+- Scope: Chrome, admin test tenant, files over 20MB.
+- Regression clue: worked last week.
 
-## Risk And Action Index
-| Risk | Evidence | Action |
-| --- | --- | --- |
-| Permission prompts block automation | Slide 3 | Define approval boundary and fallback path |
-
-## Recommended Answer Boundaries
-- The agent may summarize observed slide evidence.
-- The agent must not claim production readiness without UAT sign-off.
+## Repro Steps
+1. Sign in as admin in the test tenant.
+2. Upload a CSV file larger than 20MB.
+3. Observe completion message.
+4. Check whether the file appears in the import list.
 ```
 
 ## Skill Index
 
 | Skill | Job | Best input | Expected output |
 | --- | --- | --- | --- |
-| `deck-to-agent-kb` | Convert slides and deck notes into agent knowledge | PPT notes, screenshots, slide exports | Page analysis, key facts, risk/action index, answer boundaries |
-| `meeting-to-action-brief` | Turn meeting notes into action briefs | Notes, transcripts, chat logs | Decisions, owners, deadlines, blockers, follow-up prompts |
-| `repo-to-agent-context` | Compress a repo before agent coding | File tree, README, manifests | Repo map, entrypoints, test commands, risks |
-| `prompt-drift-review` | Review prompt and instruction changes | Diff, old/new prompt, AGENTS.md | Removed guardrails, risky additions, regression checks |
-| `agent-skill-lint-review` | Review a skill before publishing | `SKILL.md` draft | Trigger clarity, safety, validation, publish-readiness score |
-| `eval-case-miner` | Turn failures into eval cases | Bugs, logs, bad outputs | Scenario, input, expected behavior, assertions |
-| `agent-trace-debugger` | Summarize agent traces | JSONL traces, tool logs | Timeline, root-cause candidates, retry advice |
-| `mcp-server-evaluator` | Compare MCP/tool connectors | Server docs, manifests, tool list | Capability table, trust boundary, integration recommendation |
-| `llm-cost-risk-review` | Reduce token cost and latency risk | Prompt, workflow, context bundle | Cost drivers, trimming plan, budget assumptions |
-| `devtool-launch-pack` | Prepare a small devtool for launch | Repo README, metadata, demo | README checklist, topics, launch copy, release notes |
+| `api-doc-to-tool-spec` | Convert API docs into agent tool specs | Endpoint docs, OpenAPI notes | Capabilities, inputs, auth, examples, risks |
+| `changelog-to-upgrade-plan` | Turn release notes into upgrade plans | Changelogs, migration notes | Impact map, tasks, tests, rollback |
+| `support-ticket-to-eval` | Convert support tickets into eval cases | Tickets, complaints, transcripts | Scenario, expected behavior, assertions |
+| `customer-call-to-prd` | Turn customer calls into product requirements | Call notes, interview notes | Problems, requirements, non-goals, risks |
+| `incident-log-to-postmortem` | Summarize incidents into postmortems | Logs, timelines, status notes | Timeline, impact, root causes, actions |
+| `messy-notes-to-decision-log` | Extract decisions from rough notes | Notes, chat dumps, scratch docs | Decision log, evidence, owners, questions |
+| `roadmap-to-release-plan` | Convert roadmap ideas into release plans | Roadmap notes, feature lists | Milestones, scope, dependencies, risks |
+| `telemetry-to-product-insights` | Translate product metrics into insights | Events, funnels, dashboards | Findings, hypotheses, experiments |
+| `bug-report-to-repro` | Turn bug reports into reproducible cases | Bug text, screenshots, logs | Repro steps, expected/actual, missing data |
+| `competitive-research-brief` | Summarize competitor research | Notes, pages, feature comparisons | Positioning, gaps, claims, watchlist |
+| `architecture-rfc-review` | Review architecture proposals | RFCs, diagrams, design docs | Risks, tradeoffs, questions, decision advice |
+| `database-migration-risk-review` | Review data migration plans | SQL, migration docs, schemas | Risk map, checks, rollback, rollout plan |
+| `dependency-upgrade-risk-review` | Review dependency upgrade risk | Package diffs, release notes | Breaking changes, tests, rollout advice |
+| `security-review-checklist` | Build a pragmatic security review | Feature spec, threat notes | Assets, trust boundaries, checks |
+| `privacy-data-flow-map` | Map data collection and privacy risk | Product flow, events, forms | Data inventory, retention, consent risks |
+| `prompt-to-eval-rubric` | Turn prompts into eval rubrics | Prompt, expected behavior | Rubric, cases, scoring, failure modes |
+| `agent-handoff-brief` | Create a handoff for another agent | Task state, files, blockers | Current state, next steps, risks |
+| `tool-permission-audit` | Audit agent tool permissions | Tool list, policy, commands | Permission matrix, risks, approval gates |
+| `workflow-automation-scout` | Find automation opportunities | Repeated process notes | Automation candidates, ROI, safeguards |
+| `repo-launch-readiness-review` | Review a repo before public launch | README, metadata, examples | Readiness score, blockers, polish tasks |
 
 ## Examples
 
-The fastest way to understand the collection is to compare a messy input with the output a skill asks an agent to produce.
-
 | Skill | Example |
 | --- | --- |
-| `deck-to-agent-kb` | [Deck notes to agent knowledge base](examples/deck-to-agent-kb-before-after.md) |
-| `prompt-drift-review` | [Prompt diff to drift review](examples/prompt-drift-review-before-after.md) |
-| `agent-trace-debugger` | [Trace log to failure timeline](examples/agent-trace-debugger-before-after.md) |
-| `repo-to-agent-context` | [Repo snapshot to agent context](examples/repo-to-agent-context-before-after.md) |
-| `llm-cost-risk-review` | [Context bundle to cost-risk review](examples/llm-cost-risk-review-before-after.md) |
-
-Short deck example:
-
-```text
-Slide 7: UAT screenshots. Some failures around permission prompts.
-Slide 8: Qwen comparison. Large model better but slower.
-Slide 9: Need final KB for agent use.
-```
-
-After using `deck-to-agent-kb`:
-
-```markdown
-## Key Facts
-- UAT found permission-prompt failures on slide 7.
-- Model comparison on slide 8 favors quality over latency.
-
-## Risk And Action Index
-| Risk | Evidence | Action |
-| --- | --- | --- |
-| Permission prompts block automation | Slide 7 screenshots | Add approval boundary and fallback path |
-
-## Answer Boundaries
-- The agent may summarize observed slide evidence.
-- The agent must not claim production readiness without UAT sign-off.
-```
+| `bug-report-to-repro` | [Bug report to repro brief](examples/bug-report-to-repro-before-after.md) |
+| `prompt-to-eval-rubric` | [Prompt to eval rubric](examples/prompt-to-eval-rubric-before-after.md) |
+| `tool-permission-audit` | [Tool policy to permission audit](examples/tool-permission-audit-before-after.md) |
 
 ## API
 
-This is a markdown-first skill collection. The only executable interface in v0.1.0 is the validator:
-
 ```bash
 python3 scripts/validate_skills.py .
-```
-
-The validator checks frontmatter, section coverage, naming, and minimum skill count.
-
-To print a simple quality score for each skill:
-
-```bash
 python3 scripts/validate_skills.py . --score
 ```
 
-The score looks at trigger clarity, required sections, validation guidance, and description length. The default validator output is unchanged when `--score` is not used.
+The validator checks skill count, folder naming, YAML frontmatter, required sections, and optional quality scores.
+
+This is a Markdown-first repository. There is no runtime API and no external service dependency.
 
 ## FAQ
 
-**Does this call external AI APIs?**
+**Does this call an LLM API?**
 
-No. The repository is plain Markdown plus a standard-library Python validator.
+No. The repository contains Markdown skills and a standard-library Python validator.
 
-**Are these only for one agent product?**
+**Are these tied to one agent runtime?**
 
-No. The folders use a simple `SKILL.md` convention that can be adapted for Codex, Claude-style skills, or internal agent runtimes.
+No. The skills use a plain `SKILL.md` convention and can be adapted to folder-based skill runtimes or pasted into project instructions.
 
-**Why one repository instead of ten?**
+**Why replace the original 10 skills?**
 
-One repository is easier to browse, clone, validate, and adapt. Each skill remains independently copyable.
+The new set is broader and more practical for repeatable agent-builder work: specs, evals, risk reviews, privacy, security, handoffs, automation scouting, and launch readiness.
 
 ## Contributing
 
 Issues and pull requests are welcome when they include a concrete workflow, a sample input, and the expected artifact.
 
-Run this before opening a pull request:
-
-```bash
-python3 scripts/validate_skills.py .
-```
+Keep each skill self-contained. Do not add per-skill README files unless the repository structure intentionally changes.
 
 ## License
 

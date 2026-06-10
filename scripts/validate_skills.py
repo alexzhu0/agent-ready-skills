@@ -124,8 +124,8 @@ def main(argv: list[str]) -> int:
         fail(f"{skills_dir} does not exist")
 
     skill_dirs = sorted(path for path in skills_dir.iterdir() if path.is_dir())
-    if len(skill_dirs) < 10:
-        fail(f"expected at least 10 skills, found {len(skill_dirs)}")
+    if len(skill_dirs) < 20:
+        fail(f"expected at least 20 skills, found {len(skill_dirs)}")
 
     issues: list[str] = []
     for skill_dir in skill_dirs:
