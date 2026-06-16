@@ -61,6 +61,16 @@ Example:
 Use the bug-report-to-repro skill on this support complaint and produce a reproduction brief.
 ```
 
+## Best First Trials
+
+These are the fastest ways to see whether the repository is useful before reading all 20 skills:
+
+| Try this first | Why it is useful | Example |
+| --- | --- | --- |
+| `bug-report-to-repro` | Turns a vague complaint into an issue-ready reproduction brief. | [Before/after](examples/bug-report-to-repro-before-after.md) |
+| `prompt-to-eval-rubric` | Turns a loose prompt into a reusable eval rubric. | [Before/after](examples/prompt-to-eval-rubric-before-after.md) |
+| `tool-permission-audit` | Turns broad agent autonomy into explicit approval gates. | [Before/after](examples/tool-permission-audit-before-after.md) |
+
 ## 30-Second Trial
 
 Paste `skills/bug-report-to-repro/SKILL.md` into your agent with this input:
@@ -111,11 +121,13 @@ Expected output shape:
 
 ## Examples
 
-| Skill | Example |
-| --- | --- |
-| `bug-report-to-repro` | [Bug report to repro brief](examples/bug-report-to-repro-before-after.md) |
-| `prompt-to-eval-rubric` | [Prompt to eval rubric](examples/prompt-to-eval-rubric-before-after.md) |
-| `tool-permission-audit` | [Tool policy to permission audit](examples/tool-permission-audit-before-after.md) |
+Each example starts with realistic messy input, then shows the artifact the skill should produce.
+
+| Skill | Example | Output you should expect |
+| --- | --- | --- |
+| `bug-report-to-repro` | [Bug report to repro brief](examples/bug-report-to-repro-before-after.md) | Issue-ready repro steps, evidence, missing data, and triage notes |
+| `prompt-to-eval-rubric` | [Prompt to eval rubric](examples/prompt-to-eval-rubric-before-after.md) | Rubric, test cases, assertions, failure modes, and missing requirements |
+| `tool-permission-audit` | [Tool policy to permission audit](examples/tool-permission-audit-before-after.md) | Permission matrix, approval gates, policy patch, and residual risks |
 
 ## API
 
